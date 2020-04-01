@@ -83,9 +83,9 @@ const create = function (state) {
   }
 
   const getAvailableAliases = function () {
-    let aliases
+    let aliases = state('aliases')
 
-    if (!(aliases = state('aliases'))) {
+    if (!aliases) {
       return []
     }
 

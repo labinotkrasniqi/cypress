@@ -7,7 +7,7 @@ const tryFn = (fn) => {
 
 const create = function (Cypress, state) {
   const isStable = function (stable = true, event) {
-    let whenStable
+    let whenStable = state('whenStable')
 
     if (state('isStable') === stable) {
       return
@@ -15,7 +15,7 @@ const create = function (Cypress, state) {
 
     // if we are going back to stable and we have
     // a whenStable callback
-    if (stable && (whenStable = state('whenStable'))) {
+    if (stable && whenStable) {
       // invoke it
       whenStable()
     }
