@@ -1,16 +1,6 @@
-/* eslint-disable
-    brace-style,
-    no-undef,
-*/
-// TODO: This file was created by bulk-decaffeinate.
-// Fix any style issues and re-enable lint.
-/*
- * decaffeinate suggestions:
- * DS102: Remove unnecessary code created because of implicit returns
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
 describe('Clicks Integration Tests', () => {
   context('fixed-nav', () => {
+    // eslint-disable-next-line no-undef
     enterCommandTestingMode('fixed-nav')
 
     describe('fixed nav', () => {
@@ -21,14 +11,15 @@ describe('Clicks Integration Tests', () => {
   })
 
   context('dropdown', () => {
+    // eslint-disable-next-line no-undef
     enterCommandTestingMode('dropdown', { replaceIframeContents: false })
 
-    describe('animating dropdown with fixed background', () => // this tests a kendo drop down opening
+    // this tests a kendo drop down opening
     // as it opens the element from position returns the background element
     // which is fixed position
     // the fixed position element cannot be scrolled and thus an endless loop
     // is created
-    {
+    describe('animating dropdown with fixed background', () => {
       it(
         'can click an animating element when the element behind it is fixed position and cannot be scrolled',
         () => {
