@@ -1,17 +1,7 @@
-/* eslint-disable
-    brace-style,
-*/
-// TODO: This file was created by bulk-decaffeinate.
-// Fix any style issues and re-enable lint.
-/*
- * decaffeinate suggestions:
- * DS102: Remove unnecessary code created because of implicit returns
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
 const Promise = require('bluebird')
 
-const tryFn = (fn) => // promisify this function
-{
+// promisify this function
+const tryFn = (fn) => {
   return Promise.try(fn)
 }
 
@@ -40,16 +30,20 @@ const create = function (Cypress, state) {
   const whenStable = function (fn) {
     // if we are not stable
     if (state('isStable') === false) {
-      return new Promise((resolve, reject) => // then when we become stable
-      {
-        return state('whenStable', () => {
+      // then when we become stable
+      return new Promise((resolve, reject) => {
+        return state('whenStable', async () => {
         // reset this callback function
           state('whenStable', null)
 
           // and invoke the original function
-          return tryFn(fn)
-          .then(resolve)
-          .catch(reject)
+          try {
+            const thenableOrResult = await tryFn(fn)
+
+            return resolve(thenableOrResult)
+          } catch (error) {
+            return reject(error)
+          }
         })
       })
     }
