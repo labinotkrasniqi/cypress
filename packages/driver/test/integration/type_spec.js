@@ -9,11 +9,11 @@
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 describe('Type Integration Tests', () => {
-  return context('type', function () {
+  context('type', () => {
     enterCommandTestingMode('type')
 
-    return describe('card.js', () => {
-      return it('it correctly changes the caret position and value of card expiration', function () {
+    describe('card.js', () => {
+      it('it correctly changes the caret position and value of card expiration', () => {
         return this.cy
         .window().then((win) => {
           return win.$('form').card({
